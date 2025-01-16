@@ -13,7 +13,7 @@ export class SssFetch {
    * constructor
    * @param networkType mainnet or testnet
    */
-  constructor(networkType = 'mainnet') {
+  constructor(networkType: 'mainnet' | 'testnet' = 'mainnet') {
     const nt = networkType.toLowerCase()
 
     if (!(nt === 'mainnet' || nt === 'testnet'))
