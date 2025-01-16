@@ -1,0 +1,36 @@
+{
+  "name": "symbol-ws",
+  "version": "1.0.0",
+  "author": "ccHarvestasya @ccHarvestasya",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "packageManager": "yarn@4.6.0",
+  "scripts": {
+    "build": "tsc",
+    "version:major": "build && npm version major",
+    "version:minor": "build && npm version minor",
+    "version:patch": "build && npm version patch",
+    "publish": "npm publish --access=public",
+    "publish:dryrun": "npm pack --dry-run",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^20.17.13",
+    "@types/ws": "^8",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "volta": {
+    "node": "20.18.1",
+    "yarn": "4.6.0"
+  },
+  "dependencies": {
+    "sss-fetch": "../sss-fetch",
+    "ws": "^8.18.0"
+  }
+}
