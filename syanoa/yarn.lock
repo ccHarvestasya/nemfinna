@@ -5259,6 +5259,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"openapi-fetch@npm:^0.13.4":
+  version: 0.13.4
+  resolution: "openapi-fetch@npm:0.13.4"
+  dependencies:
+    openapi-typescript-helpers: "npm:^0.0.15"
+  checksum: 10c0/f291cb148e712466ba6cc90fda19f3ceab447560bd5ac87f77fde39a05b0d8330ccd1172c84f0b8fedcb90a0ca7956f0756d048038772b3df2542a9f1072d17b
+  languageName: node
+  linkType: hard
+
+"openapi-typescript-helpers@npm:^0.0.15":
+  version: 0.0.15
+  resolution: "openapi-typescript-helpers@npm:0.0.15"
+  checksum: 10c0/5eb68d487b787e3e31266470b1a310726549dd45a1079655ab18066ab291b0b3c343fdf629991013706a2329b86964f8798d56ef0272b94b931fe6c19abd7a88
+  languageName: node
+  linkType: hard
+
 "optionator@npm:^0.9.3":
   version: 0.9.4
   resolution: "optionator@npm:0.9.4"
@@ -6138,6 +6154,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sss-fetch@file:../sss-fetch::locator=syanoa%40workspace%3A.":
+  version: 1.0.0
+  resolution: "sss-fetch@file:../sss-fetch#../sss-fetch::hash=f8c50b&locator=syanoa%40workspace%3A."
+  dependencies:
+    openapi-fetch: "npm:^0.13.4"
+  checksum: 10c0/32a9770410582fe5502632487a51dc5c3533c02c0d6a647b95afd391286c3d84d6802bf05657e7435c918891c7314758a153297533c15311ad092425e58eaaba
+  languageName: node
+  linkType: hard
+
 "stack-utils@npm:^2.0.3":
   version: 2.0.6
   resolution: "stack-utils@npm:2.0.6"
@@ -6333,6 +6358,7 @@ __metadata:
     reflect-metadata: "npm:^0.2.0"
     rxjs: "npm:^7.8.1"
     source-map-support: "npm:^0.5.21"
+    sss-fetch: ../sss-fetch
     supertest: "npm:^7.0.0"
     ts-jest: "npm:^29.1.0"
     ts-loader: "npm:^9.4.3"
