@@ -13,14 +13,25 @@ import { WebSocket } from 'ws'
 import { WsBase } from './types/WsBase'
 
 export class SymbolWs extends EventEmitter {
+  private readonly MAINNET_EPOCH = new Date(Date.UTC(2021, 2, 16, 0, 6, 25))
+  private readonly TESTNET_EPOCH = new Date(Date.UTC(2022, 9, 31, 21, 7, 47))
+
+  private readonly CLOSE_REASON = new Map<number, string>([
+    [4000, 'close instruction'],
+    [4001, 'response time out'],
+    [4002, 'old block'],
+    [4003, 'slow node'],
+  ])
+
   private sssFetch: SssFetch
   private ws: WebSocket | null = null
   private uid: string | null
   private timerId: NodeJS.Timeout | null = null
   private isAlways: boolean
 
-  on(event: 'open' | 'reconnect', listener: () => void): this
-  on(event: 'close', listener: (code: number, reason: Buffer) => void): this
+  on(event: 'open', listener: (wsUrl: string) => void): this
+  on(event: 'reconnect', listener: (code: number, reason: string) => void): this
+  on(event: 'close', listener: (code: number, reason: string) => void): this
   on(event: 'error', listener: (err: Error) => void): this
   on(event: 'block', listener: (block: WsBlock) => void): this
   on(event: 'finalizedBlock', listener: (block: WsFinalizedBlock) => void): this
@@ -35,21 +46,36 @@ export class SymbolWs extends EventEmitter {
     return super.on(event, listener)
   }
 
-  constructor(networkType: 'mainnet' | 'testnet' = 'mainnet') {
+  /**
+   * コンストラクタ
+   * @param networkType ネットワークタイプ
+   * @param responseTimeout 応答タイムアウト(default:45000)
+   * @param blockTimeLagTolerance ブロック時間ラグ許容範囲(default:180000)
+   */
+  constructor(
+    private networkType: 'mainnet' | 'testnet' = 'mainnet',
+    private responseTimeout = 45000,
+    private blockTimeLagTolerance = 180000,
+  ) {
     super()
 
-    const nt = networkType.toLowerCase()
-    if (!(nt === 'mainnet' || nt === 'testnet')) throw Error('unknown network type.')
-    this.sssFetch = new SssFetch(nt)
+    this.sssFetch = new SssFetch(this.networkType)
     this.isAlways = true
     this.uid = null
   }
 
-  init = async () => {
+  /**
+   * WebSocket接続
+   */
+  connect = async () => {
     await this.sssFetch.tryRefreshApiNodesCache()
+    await this.reConnect()
   }
 
-  connect = async () => {
+  /**
+   * WebSocket再接続
+   */
+  private reConnect = async () => {
     // WebSocket接続
     const wsUrl = this.sssFetch.randomWebSocketUrl(true)
     this.ws = new WebSocket(wsUrl)
@@ -64,15 +90,35 @@ export class SymbolWs extends EventEmitter {
       this.reSetTimer()
       const receiveJson = JSON.parse(data) as WsBase
 
+      // 初回接続時UID登録
       if (receiveJson.uid) {
         this.uid = receiveJson.uid
-        this.emit('open')
-        return
+        this.emit('open', wsUrl)
+        return // 終了
       }
 
+      // ブロック生成通知時
+      if (receiveJson.topic === 'block') {
+        const blockData = receiveJson as WsBlock
+        const epochTime = this.networkType === 'mainnet' ? this.MAINNET_EPOCH : this.TESTNET_EPOCH
+        const blockDate = new Date(epochTime.getTime() + Number(blockData.data.block.timestamp))
+
+        // 現在時間とブロック時間とのラグ
+        const lag = blockDate.getTime() - new Date().getTime() // ブロックの時間が先行する
+        if (lag < 0 || this.blockTimeLagTolerance < lag) {
+          const code = 4002
+          this.ws!.close(code, this.CLOSE_REASON.get(code)) // 再接続
+        } else if (lag < 0) {
+          const code = 4003
+          this.ws!.close(code, this.CLOSE_REASON.get(code)) // 再接続
+        }
+      }
+
+      // 発火
       this.emit(receiveJson.topic!, receiveJson)
     })
 
+    // エラー時の処理
     this.ws.on('error', (err: Error) => {
       this.emit('error', err)
     })
@@ -80,18 +126,31 @@ export class SymbolWs extends EventEmitter {
     // WebSocket切断時の処理
     this.ws.on('close', async (code: number, reason: Buffer) => {
       this.uid = null
-      if (this.isAlways) this.reConnect()
-      else this.emit('close', code, reason)
+      if (this.isAlways) {
+        this.emit('reconnect', code, reason)
+        this.reConnect()
+      } else {
+        this.emit('close', code, reason)
+      }
     })
   }
 
+  /**
+   * WebSocketを永続的に閉じる
+   */
   close = () => {
     if (this.ws) {
       this.isAlways = false
-      this.ws.close()
+      const code = 4000
+      this.ws.close(code, this.CLOSE_REASON.get(code))
     }
   }
 
+  /**
+   * サブスクライブ
+   * @param topic トピック
+   * @returns サブスクライブ送信メッセージ
+   */
   subscribe(topic: 'block' | 'finalizedBlock'): string
   subscribe(
     topic:
@@ -112,6 +171,11 @@ export class SymbolWs extends EventEmitter {
     return msg
   }
 
+  /**
+   * アンサブスクライブ
+   * @param topic トピック
+   * @returns アンサブスクライブ送信メッセージ
+   */
   unSubscribe(topic: 'block' | 'finalizedBlock'): string
   unSubscribe(
     topic:
@@ -132,13 +196,14 @@ export class SymbolWs extends EventEmitter {
     return msg
   }
 
-  private reConnect = () => {
-    this.connect()
-    this.emit('reconnect')
-  }
-
+  /**
+   * 無応答タイマーをリセットする
+   */
   private reSetTimer = () => {
     if (this.timerId) clearTimeout(this.timerId)
-    this.timerId = setTimeout(() => this.ws!.close(), 90000)
+    this.timerId = setTimeout(() => {
+      const code = 4001
+      this.ws!.close(code, this.CLOSE_REASON.get(code)) // 再接続
+    }, this.responseTimeout)
   }
 }

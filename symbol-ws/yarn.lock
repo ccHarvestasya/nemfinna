@@ -1871,10 +1871,10 @@ __metadata:
 
 "sss-fetch@file:../sss-fetch::locator=symbol-ws%40workspace%3A.":
   version: 1.0.0
-  resolution: "sss-fetch@file:../sss-fetch#../sss-fetch::hash=78fae3&locator=symbol-ws%40workspace%3A."
+  resolution: "sss-fetch@file:../sss-fetch#../sss-fetch::hash=2658bf&locator=symbol-ws%40workspace%3A."
   dependencies:
     openapi-fetch: "npm:^0.13.4"
-  checksum: 10c0/50536f0366b7c48ffa7dcf2ded7ac89201dd7b11e33bef4ff98343d693c936869c4d9b46aabc09b8e381580d004d3673406dfc62f2ddd670dad3114669a8ec2b
+  checksum: 10c0/901ccc5cdf48a4db84458965c223a8c98ca993a083395a847c1e3153ecdae12ac18e3bce9260a658b9d72ec7a1c4b29034e65c56c60fcef8afbe9ec88c7b70e0
   languageName: node
   linkType: hard
 
