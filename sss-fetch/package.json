@@ -7,7 +7,8 @@
   "types": "dist/index.d.ts",
   "packageManager": "yarn@4.6.0",
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "yarn format && tsc",
+    "build:noemit": "yarn format && tsc --noEmit",
     "version:major": "build && npm version major",
     "version:minor": "build && npm version minor",
     "version:patch": "build && npm version patch",
