@@ -60,7 +60,7 @@ export class SssFetch {
   }
 
   randomApiNode = (ssl = false): components['schemas']['NodeInfo'] => {
-    return this.randomApiNodes(ssl)[0]
+    return this.randomApiNodes(ssl)[0]!
   }
 
   randomApiNodes = (
