@@ -7,13 +7,13 @@
   "types": "dist/index.d.ts",
   "packageManager": "yarn@4.6.0",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --noEmit",
     "version:major": "build && npm version major",
     "version:minor": "build && npm version minor",
     "version:patch": "build && npm version patch",
     "publish": "npm publish --access=public",
     "publish:dryrun": "npm pack --dry-run",
-    "generate:api": "openapi-typescript openapi/openapi.yml --output src/schema.d.ts",
+    "generate:api": "openapi-typescript openapi/openapi.yml --output src/schema.ts",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"
   },
   "devDependencies": {
