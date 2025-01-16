@@ -4,624 +4,624 @@
  */
 
 export interface paths {
-    "/nodes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Returns the list of known nodes that are compatible with the current catapult version. */
-        get: operations["getNodes"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/nodes/{publicKey}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Returns information about the node with the given main account. */
-        get: operations["getNode"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/nodes/nodePublicKey/{nodePublicKey}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Returns the node information for the given transport public key. */
-        get: operations["getNodeByNodePublicKey"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/nodesHostDetail": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Returns the list of hosting details for all the known nodes. */
-        get: operations["getNodesHostDetail"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/nodesStats": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Returns the summary of the number of nodes per role type. */
-        get: operations["getNodeStats"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/nodesHeightStats": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Returns the summary of the number of nodes per height and finalized height. */
-        get: operations["getNodeHeightStats"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/timeSeries/nodeCount": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Returns the summary of the number of nodes per role over time. */
-        get: operations["getNodeCount"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
+  '/nodes': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Returns the list of known nodes that are compatible with the current catapult version. */
+    get: operations['getNodes']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/nodes/{publicKey}': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Returns information about the node with the given main account. */
+    get: operations['getNode']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/nodes/nodePublicKey/{nodePublicKey}': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Returns the node information for the given transport public key. */
+    get: operations['getNodeByNodePublicKey']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/nodesHostDetail': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Returns the list of hosting details for all the known nodes. */
+    get: operations['getNodesHostDetail']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/nodesStats': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Returns the summary of the number of nodes per role type. */
+    get: operations['getNodeStats']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/nodesHeightStats': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Returns the summary of the number of nodes per height and finalized height. */
+    get: operations['getNodeHeightStats']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/timeSeries/nodeCount': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Returns the summary of the number of nodes per role over time. */
+    get: operations['getNodeCount']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
-export type webhooks = Record<string, never>;
+export type webhooks = Record<string, never>
 export interface components {
-    schemas: {
-        /** @description An error has occurred processing the request. */
-        Error: {
-            /** @example ResourceNotFound */
-            code: string;
-            /** @example no resource exists */
-            message: string;
-        };
-        /** @description Summary of the number of nodes per role over time. */
-        TimeSeriesNodeCount: components["schemas"]["NodeStatsNodeTypes"] & {
-            /**
-             * @description Total number of nodes
-             * @example 64
-             */
-            total?: number;
-        };
+  schemas: {
+    /** @description An error has occurred processing the request. */
+    Error: {
+      /** @example ResourceNotFound */
+      code: string
+      /** @example no resource exists */
+      message: string
+    }
+    /** @description Summary of the number of nodes per role over time. */
+    TimeSeriesNodeCount: components['schemas']['NodeStatsNodeTypes'] & {
+      /**
+       * @description Total number of nodes
+       * @example 64
+       */
+      total?: number
+    }
+    /**
+     * @description Network type:
+     *     * 0x68 (104 decimal) - Public main network.
+     *     * 0x98 (152 decimal) - Public test network.
+     *
+     * @example 144
+     * @enum {integer}
+     */
+    NetworkType: 104 | 152
+    /** @description A single value of the Node Height Stats. */
+    NodeHeightStatValue: {
+      /**
+       * @description Height, as a string because it represents a 64-bit integer.
+       * @example 28080
+       */
+      value?: string
+      /**
+       * Format: int32
+       * @description Number of nodes currently at that height.
+       * @example 10
+       */
+      count?: number
+    }
+    /** @description The summary of the number of nodes per height and finalized height. */
+    NodeHeightStats: {
+      /** @description Histogram of chain heights. */
+      height: components['schemas']['NodeHeightStatValue'][]
+      /** @description Histogram of chain [finalization](https://docs.symbolplatform.com/concepts/block.html#finalization) heights. */
+      finalizedHeight: components['schemas']['NodeHeightStatValue'][]
+      /**
+       * @description Date and time when the data was collected.
+       * @example 2021-10-30T01:12:35.746Z
+       */
+      date: string
+    }
+    /** @description The number of nodes indexed by role type. */
+    NodeStatsNodeTypes: {
+      [key: string]: unknown
+    }
+    /** @description The number of nodes indexed by version. */
+    NodeStatsNodeVersion: {
+      [key: string]: unknown
+    }
+    /** @description The summary of the number of nodes per role type. */
+    NodeStats: {
+      nodeTypes: components['schemas']['NodeStatsNodeTypes']
+      nodeVersion: components['schemas']['NodeStatsNodeVersion']
+    }
+    /** @example 30 */
+    NodeListLimit: number
+    /**
+     * @description `suggested`: All available API nodes that have a REST endpoint and are online.
+     *     `preferred`: Preferred API nodes that have a REST endpoint and are online. Preferred nodes match some specific domains.
+     *
+     * @example preferred
+     * @enum {string}
+     */
+    NodeListFilter: 'suggested' | 'preferred'
+    /**
+     * @description 'natural': Nodes are returned in the order they are stored in the database.
+     *     `random`: Default list order when a limit is specified. Returns {limit} number of random nodes, ordering falls back to 'natural' when limit is not specified.
+     *
+     * @example random
+     * @enum {string}
+     */
+    NodeListOrder: 'natural' | 'random'
+    /**
+     * @description When true, return only nodes which support HTTPS.
+     * @example true
+     */
+    NodeListSSL: boolean
+    /** @description The status of the peer node. */
+    PeerStatus: {
+      /**
+       * Format: int64
+       * @description When was the peer last contacted, in milliseconds elapsed since UNIX epoch (January 1, 1970 00:00:00 UTC).
+       * @example 1635515531373
+       */
+      lastStatusCheck: number
+      /**
+       * @description Whether the node is currently available (reachable and answering queries).
+       * @example true
+       */
+      isAvailable: boolean
+    }
+    /** @description The status of the REST gateway. */
+    NodeStatus: {
+      /**
+       * @description Whether the front-end REST gateway is up and running. Possible values are `up` and `down`. Node needs to be restarted if `down`.
+       * @example up
+       */
+      apiNode?: string
+      /**
+       * @description Whether the back-end database is up and running. Possible values are `up` and `down`. Node needs to be restarted if `down`.
+       * @example down
+       */
+      db?: string
+    }
+    /** @description Status of the [finalization](https://docs.symbolplatform.com/concepts/block.html#finalization) gadget. */
+    Finalization: {
+      /**
+       * Format: int32
+       * @description The latest finalized block of the blockchain.
+       *     This block and all blocks before it are immutable and cannot be rolled back.
+       *
+       * @example 512112
+       */
+      height?: number
+      /**
+       * Format: int32
+       * @description Current [finalization epoch](https://docs.symbolplatform.com/concepts/block.html#finalization).
+       * @example 713
+       */
+      epoch?: number
+      /**
+       * Format: int32
+       * @description Current [finalization point](https://docs.symbolplatform.com/concepts/block.html#finalization).
+       * @example 13
+       */
+      point?: number
+      /** @example 7C9BDF478CB18562A078F191867CB9B3FB12601AE0C69606A34C602A0F7D47EB */
+      hash?: string
+    }
+    WebSocketStatus: {
+      /** @example true */
+      isAvailable?: boolean
+      /** @example true */
+      wss?: boolean
+      /** @example wss://symbol.node.dev:3001/ws */
+      url?: string
+    }
+    /** @description The status of the API node. Information comes from the REST gateway. */
+    ApiStatus: {
+      webSocket: components['schemas']['WebSocketStatus']
+      /**
+       * @description The REST gateway URL ready to be connected to.
+       * @example https://symbol.node.dev:3001
+       */
+      restGatewayUrl: string
+      /**
+       * @description Whether the API is ready to accept queries.
+       * @example true
+       */
+      isAvailable: boolean
+      /**
+       * Format: int64
+       * @description When was the API last checked, in milliseconds elapsed since UNIX epoch (January 1, 1970 00:00:00 UTC).
+       * @example 1635531195763
+       */
+      lastStatusCheck: number
+      nodeStatus?: components['schemas']['NodeStatus']
+      /**
+       * @description Whether the API accepts connections through HTTPS.
+       * @example true
+       */
+      isHttpsEnabled: boolean
+      /**
+       * @description Node's public key used to stablish TLS connections and
+       *     [delegated harvesting](https://docs.symbolplatform.com/guides/harvesting/activating-delegated-harvesting-manual.html), for example.
+       *
+       * @example A2160AB911943082C88109DD8B65A0082EF547CA7C28F001F857112F7ADD9B3D
+       */
+      nodePublicKey: string
+      /**
+       * Format: int32
+       * @description Current chain height as reported by this node.
+       * @example 512127
+       */
+      chainHeight: number
+      finalization: components['schemas']['Finalization']
+      /**
+       * @description Version of the REST API used by this node.
+       * @example 2.3.7
+       */
+      restVersion: string
+    }
+    /** @description The world coordinates of the node based on its IP address. */
+    Coordinates: {
+      /** @example 54.7091 */
+      latitude: number
+      /** @example 25.2971 */
+      longitude: number
+    }
+    /** @description Location details of the node. */
+    HostDetail: {
+      /**
+       * @description The IP or hostname of the node.
+       * @example somehost.symbol.io
+       */
+      host: string
+      coordinates?: components['schemas']['Coordinates']
+      /**
+       * @description Text description of the host's location.
+       * @example Ashburn, VA, United States
+       */
+      location?: string
+      /** @example 3.86.20.100 */
+      ip?: string
+      /**
+       * @description Text description of the organization managing this node.
+       * @example My VPC provider
+       */
+      organization?: string
+      /**
+       * @description AS number and organization, separated by space (RIR).
+       * @example Some Company, Inc.
+       */
+      as?: string
+      /** @example North America */
+      continent?: string
+      /** @example United States */
+      country?: string
+      /** @example VA */
+      region?: string
+      /** @example Ashburn */
+      city?: string
+      /** @example Springfield */
+      district?: string
+      /** @example 20149 */
+      zip?: string
+    }
+    /** @description Node information gathered from the chain by the statistics service. */
+    NodeInfo: {
+      /**
+       * @description Node's main account's public key.
+       * @example E3FC28889BDE31406465167F1D9D6A16DCA1FF67A3BABFA5E5A8596478848FCC
+       */
+      publicKey: string
+      /**
+       * @description A number that defines the different roles the node provides. Possible roles are:
+       *     * 1 - Peer node.
+       *     * 2 - API node.
+       *     * 4 - Voting node.
+       *     * 64 - IPv4 compatible node
+       *     * 128 - IPv6 compatible node.
+       *
+       *     The values are bitwise added together, for example:
+       *     1 = Only Peer.
+       *     2 = Only API.
+       *     3 = Both Peer and API node.
+       *     7 = Peer, API and Voting node.
+       *     65 = IPv4 and Peer node.
+       *
+       * @example 3
+       */
+      roles: number
+      /**
+       * @description The version is encoded as a single 4-byte integer, where the Most-Significant Byte
+       *     encodes the Major version, and the rest of bytes are the Minor, the Micro and the Patch version.
+       *     For example, version 16777472 (decimal) is 01000100h (hex), which corresponds to version 1.0.1.0.
+       *
+       * @example 16777728
+       */
+      version: number
+      /**
+       * @description Node friendly name.
+       * @example My Node
+       */
+      friendlyName: string
+      /**
+       * @description Hash seed of the network this node is connected to.
+       *     All nodes connected to the same network have the same
+       *     [Hash Seed](https://docs.symbolplatform.com/guides/network/configuring-network-properties.html#network-configuration).
+       *
+       * @example 3B5E1FA6445653C971A50687E75E6D09FB30481055E3990C84B25E9222DC1155
+       */
+      networkGenerationHashSeed: string
+      /**
+       * @description Port used for the communication.
+       * @example 7900
+       */
+      port: number
+      networkIdentifier?: components['schemas']['NetworkType']
+      /**
+       * @description Server IP or Hostname
+       * @example somehost.symbol.io
+       */
+      host: string
+      peerStatus: components['schemas']['PeerStatus']
+      apiStatus?: components['schemas']['ApiStatus']
+      hostDetail: components['schemas']['HostDetail']
+    }
+  }
+  responses: never
+  parameters: never
+  requestBodies: never
+  headers: never
+  pathItems: never
+}
+export type $defs = Record<string, never>
+export interface operations {
+  getNodes: {
+    parameters: {
+      query?: {
         /**
-         * @description Network type:
-         *     * 0x68 (104 decimal) - Public main network.
-         *     * 0x98 (152 decimal) - Public test network.
-         *
-         * @example 144
-         * @enum {integer}
+         * @description Filter the nodes by the optional filter.
+         * @example suggested
          */
-        NetworkType: 104 | 152;
-        /** @description A single value of the Node Height Stats. */
-        NodeHeightStatValue: {
-            /**
-             * @description Height, as a string because it represents a 64-bit integer.
-             * @example 28080
-             */
-            value?: string;
-            /**
-             * Format: int32
-             * @description Number of nodes currently at that height.
-             * @example 10
-             */
-            count?: number;
-        };
-        /** @description The summary of the number of nodes per height and finalized height. */
-        NodeHeightStats: {
-            /** @description Histogram of chain heights. */
-            height: components["schemas"]["NodeHeightStatValue"][];
-            /** @description Histogram of chain [finalization](https://docs.symbolplatform.com/concepts/block.html#finalization) heights. */
-            finalizedHeight: components["schemas"]["NodeHeightStatValue"][];
-            /**
-             * @description Date and time when the data was collected.
-             * @example 2021-10-30T01:12:35.746Z
-             */
-            date: string;
-        };
-        /** @description The number of nodes indexed by role type. */
-        NodeStatsNodeTypes: {
-            [key: string]: unknown;
-        };
-        /** @description The number of nodes indexed by version. */
-        NodeStatsNodeVersion: {
-            [key: string]: unknown;
-        };
-        /** @description The summary of the number of nodes per role type. */
-        NodeStats: {
-            nodeTypes: components["schemas"]["NodeStatsNodeTypes"];
-            nodeVersion: components["schemas"]["NodeStatsNodeVersion"];
-        };
-        /** @example 30 */
-        NodeListLimit: number;
+        filter?: components['schemas']['NodeListFilter']
         /**
-         * @description `suggested`: All available API nodes that have a REST endpoint and are online.
-         *     `preferred`: Preferred API nodes that have a REST endpoint and are online. Preferred nodes match some specific domains.
-         *
-         * @example preferred
-         * @enum {string}
+         * @description The maximum number of nodes to be returned.
+         * @example 100
          */
-        NodeListFilter: "suggested" | "preferred";
+        limit?: components['schemas']['NodeListLimit']
         /**
-         * @description 'natural': Nodes are returned in the order they are stored in the database.
-         *     `random`: Default list order when a limit is specified. Returns {limit} number of random nodes, ordering falls back to 'natural' when limit is not specified.
-         *
-         * @example random
-         * @enum {string}
-         */
-        NodeListOrder: "natural" | "random";
-        /**
-         * @description When true, return only nodes which support HTTPS.
+         * @description Filter nodes according to HTTPS support.
          * @example true
          */
-        NodeListSSL: boolean;
-        /** @description The status of the peer node. */
-        PeerStatus: {
-            /**
-             * Format: int64
-             * @description When was the peer last contacted, in milliseconds elapsed since UNIX epoch (January 1, 1970 00:00:00 UTC).
-             * @example 1635515531373
-             */
-            lastStatusCheck: number;
-            /**
-             * @description Whether the node is currently available (reachable and answering queries).
-             * @example true
-             */
-            isAvailable: boolean;
-        };
-        /** @description The status of the REST gateway. */
-        NodeStatus: {
-            /**
-             * @description Whether the front-end REST gateway is up and running. Possible values are `up` and `down`. Node needs to be restarted if `down`.
-             * @example up
-             */
-            apiNode?: string;
-            /**
-             * @description Whether the back-end database is up and running. Possible values are `up` and `down`. Node needs to be restarted if `down`.
-             * @example down
-             */
-            db?: string;
-        };
-        /** @description Status of the [finalization](https://docs.symbolplatform.com/concepts/block.html#finalization) gadget. */
-        Finalization: {
-            /**
-             * Format: int32
-             * @description The latest finalized block of the blockchain.
-             *     This block and all blocks before it are immutable and cannot be rolled back.
-             *
-             * @example 512112
-             */
-            height?: number;
-            /**
-             * Format: int32
-             * @description Current [finalization epoch](https://docs.symbolplatform.com/concepts/block.html#finalization).
-             * @example 713
-             */
-            epoch?: number;
-            /**
-             * Format: int32
-             * @description Current [finalization point](https://docs.symbolplatform.com/concepts/block.html#finalization).
-             * @example 13
-             */
-            point?: number;
-            /** @example 7C9BDF478CB18562A078F191867CB9B3FB12601AE0C69606A34C602A0F7D47EB */
-            hash?: string;
-        };
-        WebSocketStatus: {
-            /** @example true */
-            isAvailable?: boolean;
-            /** @example true */
-            wss?: boolean;
-            /** @example wss://symbol.node.dev:3001/ws */
-            url?: string;
-        };
-        /** @description The status of the API node. Information comes from the REST gateway. */
-        ApiStatus: {
-            webSocket: components["schemas"]["WebSocketStatus"];
-            /**
-             * @description The REST gateway URL ready to be connected to.
-             * @example https://symbol.node.dev:3001
-             */
-            restGatewayUrl: string;
-            /**
-             * @description Whether the API is ready to accept queries.
-             * @example true
-             */
-            isAvailable: boolean;
-            /**
-             * Format: int64
-             * @description When was the API last checked, in milliseconds elapsed since UNIX epoch (January 1, 1970 00:00:00 UTC).
-             * @example 1635531195763
-             */
-            lastStatusCheck: number;
-            nodeStatus?: components["schemas"]["NodeStatus"];
-            /**
-             * @description Whether the API accepts connections through HTTPS.
-             * @example true
-             */
-            isHttpsEnabled: boolean;
-            /**
-             * @description Node's public key used to stablish TLS connections and
-             *     [delegated harvesting](https://docs.symbolplatform.com/guides/harvesting/activating-delegated-harvesting-manual.html), for example.
-             *
-             * @example A2160AB911943082C88109DD8B65A0082EF547CA7C28F001F857112F7ADD9B3D
-             */
-            nodePublicKey: string;
-            /**
-             * Format: int32
-             * @description Current chain height as reported by this node.
-             * @example 512127
-             */
-            chainHeight: number;
-            finalization: components["schemas"]["Finalization"];
-            /**
-             * @description Version of the REST API used by this node.
-             * @example 2.3.7
-             */
-            restVersion: string;
-        };
-        /** @description The world coordinates of the node based on its IP address. */
-        Coordinates: {
-            /** @example 54.7091 */
-            latitude: number;
-            /** @example 25.2971 */
-            longitude: number;
-        };
-        /** @description Location details of the node. */
-        HostDetail: {
-            /**
-             * @description The IP or hostname of the node.
-             * @example somehost.symbol.io
-             */
-            host: string;
-            coordinates?: components["schemas"]["Coordinates"];
-            /**
-             * @description Text description of the host's location.
-             * @example Ashburn, VA, United States
-             */
-            location?: string;
-            /** @example 3.86.20.100 */
-            ip?: string;
-            /**
-             * @description Text description of the organization managing this node.
-             * @example My VPC provider
-             */
-            organization?: string;
-            /**
-             * @description AS number and organization, separated by space (RIR).
-             * @example Some Company, Inc.
-             */
-            as?: string;
-            /** @example North America */
-            continent?: string;
-            /** @example United States */
-            country?: string;
-            /** @example VA */
-            region?: string;
-            /** @example Ashburn */
-            city?: string;
-            /** @example Springfield */
-            district?: string;
-            /** @example 20149 */
-            zip?: string;
-        };
-        /** @description Node information gathered from the chain by the statistics service. */
-        NodeInfo: {
-            /**
-             * @description Node's main account's public key.
-             * @example E3FC28889BDE31406465167F1D9D6A16DCA1FF67A3BABFA5E5A8596478848FCC
-             */
-            publicKey: string;
-            /**
-             * @description A number that defines the different roles the node provides. Possible roles are:
-             *     * 1 - Peer node.
-             *     * 2 - API node.
-             *     * 4 - Voting node.
-             *     * 64 - IPv4 compatible node
-             *     * 128 - IPv6 compatible node.
-             *
-             *     The values are bitwise added together, for example:
-             *     1 = Only Peer.
-             *     2 = Only API.
-             *     3 = Both Peer and API node.
-             *     7 = Peer, API and Voting node.
-             *     65 = IPv4 and Peer node.
-             *
-             * @example 3
-             */
-            roles: number;
-            /**
-             * @description The version is encoded as a single 4-byte integer, where the Most-Significant Byte
-             *     encodes the Major version, and the rest of bytes are the Minor, the Micro and the Patch version.
-             *     For example, version 16777472 (decimal) is 01000100h (hex), which corresponds to version 1.0.1.0.
-             *
-             * @example 16777728
-             */
-            version: number;
-            /**
-             * @description Node friendly name.
-             * @example My Node
-             */
-            friendlyName: string;
-            /**
-             * @description Hash seed of the network this node is connected to.
-             *     All nodes connected to the same network have the same
-             *     [Hash Seed](https://docs.symbolplatform.com/guides/network/configuring-network-properties.html#network-configuration).
-             *
-             * @example 3B5E1FA6445653C971A50687E75E6D09FB30481055E3990C84B25E9222DC1155
-             */
-            networkGenerationHashSeed: string;
-            /**
-             * @description Port used for the communication.
-             * @example 7900
-             */
-            port: number;
-            networkIdentifier?: components["schemas"]["NetworkType"];
-            /**
-             * @description Server IP or Hostname
-             * @example somehost.symbol.io
-             */
-            host: string;
-            peerStatus: components["schemas"]["PeerStatus"];
-            apiStatus?: components["schemas"]["ApiStatus"];
-            hostDetail: components["schemas"]["HostDetail"];
-        };
-    };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
-}
-export type $defs = Record<string, never>;
-export interface operations {
-    getNodes: {
-        parameters: {
-            query?: {
-                /**
-                 * @description Filter the nodes by the optional filter.
-                 * @example suggested
-                 */
-                filter?: components["schemas"]["NodeListFilter"];
-                /**
-                 * @description The maximum number of nodes to be returned.
-                 * @example 100
-                 */
-                limit?: components["schemas"]["NodeListLimit"];
-                /**
-                 * @description Filter nodes according to HTTPS support.
-                 * @example true
-                 */
-                ssl?: components["schemas"]["NodeListSSL"];
-                /**
-                 * @description Sorts and samples the nodes to be returned
-                 * @example random
-                 */
-                order?: components["schemas"]["NodeListOrder"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The list of known nodes. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NodeInfo"][];
-                };
-            };
-        };
-    };
-    getNode: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The node's main account's public key.
-                 * @example E3FC28889BDE31406465167F1D9D6A16DCA1FF67A3BABFA5E5A8596478848F78
-                 */
-                publicKey: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The node information. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NodeInfo"];
-                };
-            };
-            /** @description There is no node with the given main account. */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    getNodeByNodePublicKey: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The node's transport public key.
-                 * @example E3FC28889BDE31406465167F1D9D6A16DCA1FF67A3BABFA5E5A8596478848F78
-                 */
-                nodePublicKey: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The node information for the given transport public key. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NodeInfo"];
-                };
-            };
-            /** @description There is no node with the given transport public key. */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    getNodesHostDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The list of the hosting details. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HostDetail"][];
-                };
-            };
-        };
-    };
-    getNodeStats: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The summary of the number of nodes per role type. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NodeStats"];
-                };
-            };
-        };
-    };
-    getNodeHeightStats: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The summary of the number of nodes per height and finalized height. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NodeHeightStats"];
-                };
-            };
-        };
-    };
-    getNodeCount: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The summary of the number of nodes per role over time. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TimeSeriesNodeCount"][];
-                };
-            };
-        };
-    };
+        ssl?: components['schemas']['NodeListSSL']
+        /**
+         * @description Sorts and samples the nodes to be returned
+         * @example random
+         */
+        order?: components['schemas']['NodeListOrder']
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The list of known nodes. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['NodeInfo'][]
+        }
+      }
+    }
+  }
+  getNode: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /**
+         * @description The node's main account's public key.
+         * @example E3FC28889BDE31406465167F1D9D6A16DCA1FF67A3BABFA5E5A8596478848F78
+         */
+        publicKey: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The node information. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['NodeInfo']
+        }
+      }
+      /** @description There is no node with the given main account. */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Error']
+        }
+      }
+    }
+  }
+  getNodeByNodePublicKey: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /**
+         * @description The node's transport public key.
+         * @example E3FC28889BDE31406465167F1D9D6A16DCA1FF67A3BABFA5E5A8596478848F78
+         */
+        nodePublicKey: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The node information for the given transport public key. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['NodeInfo']
+        }
+      }
+      /** @description There is no node with the given transport public key. */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Error']
+        }
+      }
+    }
+  }
+  getNodesHostDetail: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The list of the hosting details. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['HostDetail'][]
+        }
+      }
+    }
+  }
+  getNodeStats: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The summary of the number of nodes per role type. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['NodeStats']
+        }
+      }
+    }
+  }
+  getNodeHeightStats: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The summary of the number of nodes per height and finalized height. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['NodeHeightStats']
+        }
+      }
+    }
+  }
+  getNodeCount: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The summary of the number of nodes per role over time. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['TimeSeriesNodeCount'][]
+        }
+      }
+    }
+  }
 }
