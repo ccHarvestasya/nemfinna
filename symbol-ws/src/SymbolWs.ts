@@ -19,8 +19,7 @@ export class SymbolWs extends EventEmitter {
   private readonly CLOSE_REASON = new Map<number, string>([
     [4000, 'close instruction'],
     [4001, 'response time out'],
-    [4002, 'old block'],
-    [4003, 'slow node'],
+    [4002, 'old block or slow node'],
   ])
 
   private sssFetch: SssFetch
@@ -28,6 +27,8 @@ export class SymbolWs extends EventEmitter {
   private uid: string | null
   private timerId: NodeJS.Timeout | null = null
   private isAlways: boolean
+
+  private webSocketUrl: string | null = null
 
   on(event: 'open', listener: (wsUrl: string) => void): this
   on(event: 'reconnect', listener: (code: number, reason: string) => void): this
@@ -50,18 +51,27 @@ export class SymbolWs extends EventEmitter {
    * コンストラクタ
    * @param networkType ネットワークタイプ
    * @param responseTimeout 応答タイムアウト(default:45000)
-   * @param blockTimeLagTolerance ブロック時間ラグ許容範囲(default:180000)
    */
   constructor(
     private networkType: 'mainnet' | 'testnet' = 'mainnet',
     private responseTimeout = 45000,
-    private blockTimeLagTolerance = 180000,
   ) {
     super()
 
     this.sssFetch = new SssFetch(this.networkType)
     this.isAlways = true
     this.uid = null
+  }
+
+  get websocketUrl(): Promise<string> {
+    return new Promise((resolve) => {
+      const interval = setInterval(() => {
+        if (this.webSocketUrl !== null) {
+          clearInterval(interval) // タイマーを停止
+          resolve(this.webSocketUrl) // 値を返す
+        }
+      }, 100) // 100msごとにチェック
+    })
   }
 
   /**
@@ -77,8 +87,8 @@ export class SymbolWs extends EventEmitter {
    */
   private reConnect = async () => {
     // WebSocket接続
-    const wsUrl = this.sssFetch.randomWebSocketUrl(true)
-    this.ws = new WebSocket(wsUrl)
+    this.webSocketUrl = this.sssFetch.randomWebSocketUrl(true)
+    this.ws = new WebSocket(this.webSocketUrl)
 
     // WebSocket接続時の処理
     this.ws.on('open', () => {
@@ -93,7 +103,7 @@ export class SymbolWs extends EventEmitter {
       // 初回接続時UID登録
       if (receiveJson.uid) {
         this.uid = receiveJson.uid
-        this.emit('open', wsUrl)
+        this.emit('open', this.webSocketUrl)
         return // 終了
       }
 
@@ -104,12 +114,9 @@ export class SymbolWs extends EventEmitter {
         const blockDate = new Date(epochTime.getTime() + Number(blockData.data.block.timestamp))
 
         // 現在時間とブロック時間とのラグ
-        const lag = blockDate.getTime() - new Date().getTime() // ブロックの時間が先行する
-        if (lag < 0 || this.blockTimeLagTolerance < lag) {
+        const gap = blockDate.getTime() - new Date().getTime() // ブロックの時間が先行する
+        if (gap < 0) {
           const code = 4002
-          this.ws!.close(code, this.CLOSE_REASON.get(code)) // 再接続
-        } else if (lag < 0) {
-          const code = 4003
           this.ws!.close(code, this.CLOSE_REASON.get(code)) // 再接続
         }
       }
@@ -126,6 +133,7 @@ export class SymbolWs extends EventEmitter {
     // WebSocket切断時の処理
     this.ws.on('close', async (code: number, reason: Buffer) => {
       this.uid = null
+      this.webSocketUrl = null
       if (this.isAlways) {
         this.emit('reconnect', code, reason)
         this.reConnect()
