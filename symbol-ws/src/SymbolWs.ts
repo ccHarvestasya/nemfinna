@@ -57,7 +57,7 @@ export class SymbolWs extends EventEmitter {
    */
   constructor(
     private networkType: 'mainnet' | 'testnet' = 'mainnet',
-    private responseTimeout = 45000,
+    private responseTimeout = 60000,
   ) {
     super()
 
