@@ -15,6 +15,8 @@ import { WebSocket } from 'ws'
 export class SymbolWs extends EventEmitter {
   private readonly MAINNET_EPOCH = new Date(Date.UTC(2021, 2, 16, 0, 6, 25))
   private readonly TESTNET_EPOCH = new Date(Date.UTC(2022, 9, 31, 21, 7, 47))
+  private readonly MAINNET_BLOCK_TIME_TOLERANCE = -3000
+  private readonly TESTNET_BLOCK_TIME_TOLERANCE = 1000
 
   private readonly CLOSE_REASON = new Map<number, string>([
     [4000, 'close instruction'],
@@ -27,6 +29,7 @@ export class SymbolWs extends EventEmitter {
   private uid: string | null
   private timerId: NodeJS.Timeout | null = null
   private isAlways: boolean
+  private blockTimeTolerance: number
 
   private webSocketUrl: string | null = null
 
@@ -58,6 +61,10 @@ export class SymbolWs extends EventEmitter {
   ) {
     super()
 
+    this.blockTimeTolerance =
+      this.networkType === 'mainnet'
+        ? this.MAINNET_BLOCK_TIME_TOLERANCE
+        : this.TESTNET_BLOCK_TIME_TOLERANCE
     this.sssFetch = new SssFetch(this.networkType)
     this.isAlways = true
     this.uid = null
@@ -114,8 +121,8 @@ export class SymbolWs extends EventEmitter {
         const blockDate = new Date(epochTime.getTime() + Number(blockData.data.block.timestamp))
 
         // 現在時間とブロック時間とのラグ
-        const gap = blockDate.getTime() - new Date().getTime() // ブロックの時間が先行する
-        if (gap < 0) {
+        const gap = new Date().getTime() - blockDate.getTime()
+        if (this.blockTimeTolerance < gap) {
           const code = 4002
           this.ws!.close(code, this.CLOSE_REASON.get(code)) // 再接続
         }
