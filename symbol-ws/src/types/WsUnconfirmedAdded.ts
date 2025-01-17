@@ -1,3 +1,3 @@
-import { WsConfirmedAdded } from './WsConfirmedAdded'
+import { WsConfirmedAdded } from './WsConfirmedAdded.js'
 
 export interface WsUnconfirmedAdded extends WsConfirmedAdded {}

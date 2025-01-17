@@ -1,4 +1,4 @@
-import { WsBase } from './WsBase'
+import { WsBase } from './WsBase.js'
 
 export interface WsUnconfirmedRemoved extends WsBase {
   data: {

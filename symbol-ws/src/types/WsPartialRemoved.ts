@@ -1,3 +1,3 @@
-import { WsUnconfirmedRemoved } from './WsUnconfirmedRemoved'
+import { WsUnconfirmedRemoved } from './WsUnconfirmedRemoved.js'
 
 export interface WsPartialRemoved extends WsUnconfirmedRemoved {}

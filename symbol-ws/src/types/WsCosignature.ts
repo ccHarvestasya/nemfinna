@@ -1,4 +1,4 @@
-import { WsBase } from './WsBase'
+import { WsBase } from './WsBase.js'
 
 export interface WsCosignature extends WsBase {
   data: {

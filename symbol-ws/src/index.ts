@@ -1,1 +1,1 @@
-export * from './SymbolWs'
+export { SymbolWs } from './SymbolWs.js'
