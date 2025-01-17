@@ -1,1 +1,1 @@
-export * from './SssFetch'
+export { SssFetch } from './SssFetch.js'

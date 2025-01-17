@@ -1,5 +1,5 @@
 import createClient, { Client } from 'openapi-fetch'
-import { components, paths } from './schema'
+import { components, paths } from './schema.js'
 
 export class SssFetch {
   private readonly MAINNET_SSS_URL = 'https://symbol.services'
