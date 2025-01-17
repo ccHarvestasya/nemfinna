@@ -924,6 +924,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/config@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@nestjs/config@npm:4.0.0"
+  dependencies:
+    dotenv: "npm:16.4.7"
+    dotenv-expand: "npm:12.0.1"
+    lodash: "npm:4.17.21"
+  peerDependencies:
+    "@nestjs/common": ^10.0.0 || ^11.0.0
+    rxjs: ^7.1.0
+  checksum: 10c0/e741997048ab7fd9413c240f459590f168ce7b3ec54888e9b3f0cfccf4a29db4814884aa0119b9af9127f0b6833a1c59158d414aa86f3400929190dc91febd97
+  languageName: node
+  linkType: hard
+
 "@nestjs/core@npm:^10.0.0":
   version: 10.4.15
   resolution: "@nestjs/core@npm:10.4.15"
@@ -2839,6 +2853,22 @@ __metadata:
   dependencies:
     esutils: "npm:^2.0.2"
   checksum: 10c0/c96bdccabe9d62ab6fea9399fdff04a66e6563c1d6fb3a3a063e8d53c3bb136ba63e84250bbf63d00086a769ad53aef92d2bd483f03f837fc97b71cbee6b2520
+  languageName: node
+  linkType: hard
+
+"dotenv-expand@npm:12.0.1":
+  version: 12.0.1
+  resolution: "dotenv-expand@npm:12.0.1"
+  dependencies:
+    dotenv: "npm:^16.4.5"
+  checksum: 10c0/51996bfa670073d7a441b8fbed26ac991026fba2c05e9a937a898ce7d2a2e7166f7b6ec4eb8879e576defb5d1ad399ed1300db8f803d6977577fea55b4d82dac
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:16.4.7, dotenv@npm:^16.4.5":
+  version: 16.4.7
+  resolution: "dotenv@npm:16.4.7"
+  checksum: 10c0/be9f597e36a8daf834452daa1f4cc30e5375a5968f98f46d89b16b983c567398a330580c88395069a77473943c06b877d1ca25b4afafcdd6d4adb549e8293462
   languageName: node
   linkType: hard
 
@@ -4908,7 +4938,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.20, lodash@npm:^4.17.21":
+"lodash@npm:4.17.21, lodash@npm:^4.17.20, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
@@ -6356,9 +6386,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sss-fetch@file:../sss-fetch::locator=symbol-ws%40file%3A..%2Fsymbol-ws%23..%2Fsymbol-ws%3A%3Ahash%3D29a25d%26locator%3Dxym-price%2540workspace%253A.":
+"sss-fetch@file:../sss-fetch::locator=symbol-ws%40file%3A..%2Fsymbol-ws%23..%2Fsymbol-ws%3A%3Ahash%3D25068b%26locator%3Dxym-price%2540workspace%253A.":
   version: 1.0.0
-  resolution: "sss-fetch@file:../sss-fetch#../sss-fetch::hash=0829f1&locator=symbol-ws%40file%3A..%2Fsymbol-ws%23..%2Fsymbol-ws%3A%3Ahash%3D29a25d%26locator%3Dxym-price%2540workspace%253A."
+  resolution: "sss-fetch@file:../sss-fetch#../sss-fetch::hash=0829f1&locator=symbol-ws%40file%3A..%2Fsymbol-ws%23..%2Fsymbol-ws%3A%3Ahash%3D25068b%26locator%3Dxym-price%2540workspace%253A."
   dependencies:
     openapi-fetch: "npm:^0.13.4"
   checksum: 10c0/8f8831cc70094d0117b9415f7a6bd281308b21fdc005c061d3a68efe4992db07056b3da09ae656f9414aa53808ef09f2934a629587491a8b0ea2864f6bbedb2d
@@ -6567,11 +6597,11 @@ __metadata:
 
 "symbol-ws@file:../symbol-ws::locator=xym-price%40workspace%3A.":
   version: 1.0.0
-  resolution: "symbol-ws@file:../symbol-ws#../symbol-ws::hash=29a25d&locator=xym-price%40workspace%3A."
+  resolution: "symbol-ws@file:../symbol-ws#../symbol-ws::hash=25068b&locator=xym-price%40workspace%3A."
   dependencies:
     sss-fetch: ../sss-fetch
     ws: "npm:^8.18.0"
-  checksum: 10c0/6a49da5cdf02af7fe81d5174695041fdb2a6978b96910626b7e43bee0c3ff0109cf184c26d16f5b38e5129b6ddbfcecfb8f26e121658b983bb6062a4563b96fe
+  checksum: 10c0/2b7f743db2003976505cd4c321cd05d3cd7208d4ae662e08a234b837f51bf9f7786cb96746581576ef59430cbfdabe6141f9f5f511c40787d3d4be47f8254151
   languageName: node
   linkType: hard
 
@@ -7258,6 +7288,7 @@ __metadata:
   dependencies:
     "@nestjs/cli": "npm:^10.0.0"
     "@nestjs/common": "npm:^10.0.0"
+    "@nestjs/config": "npm:^4.0.0"
     "@nestjs/core": "npm:^10.0.0"
     "@nestjs/platform-express": "npm:^10.0.0"
     "@nestjs/schematics": "npm:^10.0.0"
